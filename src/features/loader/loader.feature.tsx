@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import BeatLoader from 'react-spinners/BeatLoader';
 
-export function TestFeature() {
+export function LoaderFeature() {
     const [loading, setLoading] = useState(true);
     const [color, setColor] = useState('green');
 

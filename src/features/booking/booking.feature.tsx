@@ -1,13 +1,12 @@
-import React, { FC, useEffect, useState, MouseEventHandler } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import { MenuItem, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
+import { MenuItem, FormControlLabel } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,9 +21,7 @@ import Logo from '../../assets/logo-small.png';
 type BookingProps = {
     events: EventType[];
 };
-interface Click {
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -62,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const BookingFeature: FC<BookingProps & Click> = ({ events }) => {
+const BookingFeature: FC<BookingProps> = ({ events }) => {
+    console.log(events);
     const classes = useStyles();
     const Alert = (props: any) => {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -83,9 +81,11 @@ const BookingFeature: FC<BookingProps & Click> = ({ events }) => {
         status: 'Booked',
         eventTime: '1',
         eventDate: '1',
+        eventCategory: '',
     });
 
     const setDateTimeCategory = (time: any, date: any, category: any) => {
+        console.log(category);
         fields.eventDate = date;
         fields.eventTime = time;
         fields.eventCategory = category;
@@ -158,7 +158,7 @@ const BookingFeature: FC<BookingProps & Click> = ({ events }) => {
                                 select
                                 fullWidth
                                 required
-                                value={fields.event_id}
+                                value={fields.eventId}
                                 onChange={handleOnChange}
                                 name="eventId"
                                 label="Select An Event"
@@ -253,7 +253,7 @@ const BookingFeature: FC<BookingProps & Click> = ({ events }) => {
                         Submit
                     </Button>
                 </form>
-                <CancelBookingFeature />
+                <CancelBookingFeature events={events} />
 
                 <Snackbar
                     open={formSubmission.showToast}

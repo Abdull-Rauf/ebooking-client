@@ -12,7 +12,7 @@ const base = {
 };
 const development = {
     ...base,
-    backendBaseUrl: 'http://server.minhaj.se/admin-be',
+    backendBaseUrl: 'http://localhost:4000',
 };
 
 const production = {
